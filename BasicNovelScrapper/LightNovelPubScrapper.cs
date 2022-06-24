@@ -12,7 +12,7 @@ namespace BasicNovelScrapper
         public string url = "https://www.lightnovelpub.com/genre/all/popular/all/1";
 
 
-        public void GetNovels()
+        public List<Novel> GetNovels()
         {
             
             var web = new HtmlWeb();
@@ -38,12 +38,14 @@ namespace BasicNovelScrapper
                     Novels.Add(novel);
                 }
                 nextButton = document.DocumentNode.SelectSingleNode("/html/body/main/article/nav[2]/div/ul/li[6]/a");
-                url = url.Replace(Convert.ToString(index), Convert.ToString(index+1));
+                url = url.Replace(Convert.ToString(index), Convert.ToString(index + 1));
                 index++;
-            } while (nextButton != null);
-           
+            }while (nextButton != null);
 
-            foreach(var novel in Novels)
+
+            return Novels;
+
+           /* foreach(var novel in Novels)
             {
                 Console.WriteLine(novel.title);
                 Console.WriteLine(novel.rating);
@@ -51,7 +53,7 @@ namespace BasicNovelScrapper
                 Console.WriteLine(novel.status);
                 Console.WriteLine("-----------");
             }
-            Console.WriteLine(count);
+            Console.WriteLine(count);*/
 
         }
     }
